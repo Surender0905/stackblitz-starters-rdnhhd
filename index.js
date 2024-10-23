@@ -78,7 +78,7 @@ function filterByPrice(productArray, maxPrice) {
 
 
 app.get('/products/filter/price', (req, res) => {
-  const price = parseFloat(req.query.price); /
+  const price = parseFloat(req.query.price); 
   if (isNaN(price)) {
       return res.status(400).json({ error: 'Valid price parameter is required' });
   }
