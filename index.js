@@ -39,6 +39,20 @@ app.get('/products/filter/ram', (req, res) => {
   res.json(filteredProducts);
 });
 
+function filterByRom(productArray, rom) {
+  return productArray.filter(product => product.rom === rom);
+}
+
+
+app.get('/products/filter/rom', (req, res) => {
+  const rom = parseInt(req.query.rom, 10); 
+  if (isNaN(rom)) {
+      return res.status(400).json({ error: 'Valid ROM parameter is required' });
+  }
+
+  const filteredProducts = filterByRom([...products], rom); 
+  res.json(filteredProducts); 
+});
 function filterByBrand(productArray, brand) {
   return productArray.filter(
     (product) => product.brand.toLowerCase() === brand.toLowerCase()
